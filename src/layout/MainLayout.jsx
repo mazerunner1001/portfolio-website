@@ -45,7 +45,7 @@ const MainLayout = () => {
   };
   return (
     <div style={{ position: 'relative', zIndex: 10 }}>
-      <Navigation isMobile={hideButtons} />
+      <Navigation />
       
       {/* Main Container - Responsive Layout */}
       <div style={{
@@ -57,7 +57,8 @@ const MainLayout = () => {
         flexDirection: isMobile ? 'column' : 'row',
         margin: '0 auto',
         gap: isMobile ? '0' : '2rem',
-        padding: isMobile ? '0' : '0'
+        padding: isMobile ? '0' : '0',
+        maxWidth: '100vw' // Ensure it doesn't exceed viewport width
       }}>
         {/* Profile Section - Top on mobile, Left on desktop */}
                 {/* Profile Section - Top on mobile, Left on desktop */}
