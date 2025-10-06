@@ -1,13 +1,24 @@
 import React from 'react';
 import LogoLoop from '../animations/LogoLoop/LogoLoop';
-import { techLogos } from '../data/techStack.jsx';
+import { techLogos } from '../data/techStack';
+import CVFile from '../assets/CV_Praneeth_Chandra.pdf';
 
 const TechStackSection = () => {
+  const isMobile = window.innerWidth < 1200;
+  const isTablet = window.innerWidth < 1000;
+  
   const handleLetsTalk = () => {
     const contactSection = document.getElementById('contact');
     if (contactSection) {
       contactSection.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+  
+  const handleDownloadCV = () => {
+    const link = document.createElement('a');
+    link.href = CVFile;
+    link.download = 'Praneeth_Chandra_CV.pdf';
+    link.click();
   };
 
   return (
@@ -16,30 +27,36 @@ const TechStackSection = () => {
       flexDirection: 'column',
       alignItems: 'center',
       overflow: 'hidden',
-      width: '100%'
+      width: '100%',
+      maxWidth: '100vw',
+      padding: isMobile ? '0' : '0'
     }}>
       {/* LogoLoop Section */}
       <div style={{ 
-        height: '80px',
+        height: isMobile ? '60px' : '80px',
         display: 'flex',
         alignItems: 'center',
         overflow: 'hidden',
-        width: '100%'
+        width: '100%',
+        maxWidth: '100vw',
+        position: 'relative'
       }}>
         <div style={{ 
           width: '100%', 
-          height: '60px',
+          height: isMobile ? '40px' : '60px',
           display: 'flex',
-          alignItems: 'center'
+          alignItems: 'center',
+          overflow: 'hidden',
+          maxWidth: '100%'
         }} data-logoloop>
           <LogoLoop
             logos={techLogos}
-            speed={40}
+            speed={isMobile ? 30 : 40}
             direction="left"
-            logoHeight={48}
-            gap={60}
-            pauseOnHover={true}
-            scaleOnHover={true}
+            logoHeight={isMobile ? 32 : 48}
+            gap={isMobile ? 40 : 60}
+            pauseOnHover={!isMobile}
+            scaleOnHover={!isMobile}
             fadeOut={true}
             fadeOutColor="#070311"
             ariaLabel="Technology stack"
@@ -48,12 +65,14 @@ const TechStackSection = () => {
         </div>
       </div>
 
-      {/* Let's Talk Button */}
+      {/* Action Buttons */}
       <div style={{ 
         marginTop: '2rem',
         width: '100%',
         display: 'flex',
-        justifyContent: 'flex-start'
+        gap: '1rem',
+        justifyContent: 'flex-start',
+        flexWrap: 'wrap'
       }}>
         <button 
           onClick={handleLetsTalk}
@@ -80,6 +99,36 @@ const TechStackSection = () => {
           }}
         >
           Let's Talk
+        </button>
+        
+        <button 
+          onClick={handleDownloadCV}
+          style={{
+            background: 'transparent',
+            color: '#A855F7',
+            border: '2px solid #A855F7',
+            borderRadius: '12px',
+            padding: '1rem 2rem',
+            fontSize: '1.1rem',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.3s ease',
+            transform: 'translateY(0)',
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.background = '#A855F7';
+            e.target.style.color = 'white';
+            e.target.style.transform = 'translateY(-2px)';
+            e.target.style.boxShadow = '0 8px 20px rgba(168, 85, 247, 0.3)';
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.background = 'transparent';
+            e.target.style.color = '#A855F7';
+            e.target.style.transform = 'translateY(0)';
+            e.target.style.boxShadow = 'none';
+          }}
+        >
+          Download CV
         </button>
       </div>
     </div>

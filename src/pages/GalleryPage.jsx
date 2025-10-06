@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import DomeGallery from '../components/DomeGallery/DomeGallery';
 
 // Import all videos
@@ -22,6 +22,11 @@ import Image12 from '../assets/dome/image_12.jpg';
 import './GalleryPage.css';
 
 const GalleryPage = () => {
+  // Scroll to top when component mounts
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Gallery items using actual assets
   const galleryItems = [
     {

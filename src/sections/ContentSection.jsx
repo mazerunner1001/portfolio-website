@@ -12,7 +12,8 @@ const ContentSection = () => {
       justifyContent: 'center',
       paddingTop: '15vh',
       overflow: 'hidden',
-      boxSizing: 'border-box'
+      boxSizing: 'border-box',
+      padding: window.innerWidth < 1200 ? '5vh 1rem 0 1rem' : '15vh 0 0 0'
     }}>
       <HeroSection />
       <TechStackSection />

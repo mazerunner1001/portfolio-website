@@ -83,22 +83,11 @@ const AboutSection = () => {
                 (React.JS, Node.JS, Spring Boot), I've worked as a SWE Intern at Trumio Inc and led 
                 multiple successful projects in NLP, IoT, and web development.
               </p>
-              <p className="gallery-invite">
-                Ready to explore the visual journey of my work? 
-                <span className="highlight-text"> Dive deeper into my world</span> 
-                and discover the projects, experiences, and creative endeavors that define my tech journey.
-              </p>
             </div>
             
             <div className="about-cta">
-              <button className="download-cv-btn" onClick={handleDownloadCV}>
-                Download CV
-              </button>
               <button className="view-projects-btn" onClick={handleViewProjects}>
                 View Projects
-              </button>
-              <button className="explore-gallery-btn" onClick={handleExploreGallery}>
-                Dive Into My World ✨
               </button>
             </div>
           </div>
@@ -113,6 +102,20 @@ const AboutSection = () => {
                   <div className="stat-description">{stat.description}</div>
                 </div>
               ))}
+            </div>
+            
+            {/* Gallery Invite Section */}
+            <div className="gallery-invite-section">
+              <div className="gallery-invite">
+                Ready to explore the visual journey of my work? 
+                <span className="highlight-text"> Dive deeper into my world </span> 
+                and discover the my personal experiences, and creative endeavors.
+              </div>
+              <div className="gallery-cta">
+                <button className="explore-gallery-btn" onClick={handleExploreGallery}>
+                  Dive Into My World ✨
+                </button>
+              </div>
             </div>
           </div>
         </div>

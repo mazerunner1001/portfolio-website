@@ -1,0 +1,51 @@
+/* Global responsive styles for better mobile experience */
+
+/* Center all content on mobile screens */
+@media (max-width: 1200px) {
+  .content-main {
+    text-align: center !important;
+  }
+  
+  .content-main > * {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Ensure proper spacing on tablet and mobile */
+@media (max-width: 1000px) {
+  /* Center all section content */
+  .projects-section,
+  .experience-section,
+  .contact-section {
+    text-align: center;
+  }
+  
+  /* Center grids and flex containers */
+  .projects-grid,
+  .experience-timeline,
+  .stats-grid,
+  .services-grid {
+    margin: 0 auto;
+  }
+}
+
+/* Mobile specific improvements */
+@media (max-width: 800px) {
+  /* Hide swap buttons */
+  .swap-button {
+    display: none !important;
+  }
+  
+  /* Ensure full width utilization on mobile */
+  .container {
+    padding: 0 1rem;
+  }
+  
+  /* Better button spacing */
+  .about-cta {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+}

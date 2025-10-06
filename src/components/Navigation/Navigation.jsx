@@ -3,7 +3,7 @@ import './Navigation.css';
 import { FaHome, FaFolder, FaTools, FaBriefcase, FaQuestionCircle, FaEnvelope } from 'react-icons/fa';
 import Terminal from '../Terminal/Terminal';
 
-const Navigation = () => {
+const Navigation = ({ isMobile = false }) => {
   const [activeSection, setActiveSection] = useState('home');
   const [isUserScrolling, setIsUserScrolling] = useState(false);
   const [isCLIMode, setIsCLIMode] = useState(false);
@@ -169,31 +169,33 @@ const Navigation = () => {
         </div>
       </nav>
       
-      {/* CLI/GUI Toggle Buttons - Top Right */}
-      <div className="mode-toggle">
-        <div className="mode-pills">
-          <button
-            className={`mode-pill ${!isCLIMode ? 'active' : ''}`}
-            onClick={() => !isCLIMode ? null : handleCLIToggle()}
-            title="GUI Mode"
-          >
-            GUI
-          </button>
-          <button
-            className={`mode-pill ${isCLIMode ? 'active' : ''}`}
-            onClick={() => isCLIMode ? null : handleCLIToggle()}
-            title="CLI Mode"
-          >
-            CLI
-          </button>
-          <div 
-            className="mode-indicator" 
-            style={{
-              transform: `translateX(${isCLIMode ? '60px' : '0px'})`
-            }}
-          />
+      {/* CLI/GUI Toggle Buttons - Top Right - Hidden on mobile */}
+      {!isMobile && (
+        <div className="mode-toggle">
+          <div className="mode-pills">
+            <button
+              className={`mode-pill ${!isCLIMode ? 'active' : ''}`}
+              onClick={() => !isCLIMode ? null : handleCLIToggle()}
+              title="GUI Mode"
+            >
+              GUI
+            </button>
+            <button
+              className={`mode-pill ${isCLIMode ? 'active' : ''}`}
+              onClick={() => isCLIMode ? null : handleCLIToggle()}
+              title="CLI Mode"
+            >
+              CLI
+            </button>
+            <div 
+              className="mode-indicator" 
+              style={{
+                transform: `translateX(${isCLIMode ? '60px' : '0px'})`
+              }}
+            />
+          </div>
         </div>
-      </div>
+      )}
       
       {/* Terminal Component */}
       <Terminal

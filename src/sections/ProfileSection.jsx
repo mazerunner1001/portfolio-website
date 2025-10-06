@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import SimpleLanyard from '../components/SimpleLanyard/SimpleLanyard';
 import Lanyard from '../components/Lanyard/Lanyard';
 
-const ProfileSection = () => {
+const ProfileSection = ({ isMobile = false, isTablet = false, hideButtons = false }) => {
   const [isSimpleLanyard, setIsSimpleLanyard] = useState(true);
 
   const toggleLanyard = () => {
@@ -13,26 +13,27 @@ const ProfileSection = () => {
     <div 
       className="profile-section" 
       style={{
-        width: '32%',
+        width: isMobile ? '100%' : '32%',
         flexShrink: 0,
-        paddingTop: isSimpleLanyard ? '80px' : '0', // No padding for 3D lanyard
-        paddingLeft: '0',
-        paddingRight: '0',
+        paddingTop: isMobile ? '80px' : (isSimpleLanyard ? '80px' : '0'),
+        paddingLeft: isMobile ? '20px' : '0',
+        paddingRight: isMobile ? '20px' : '0',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
-        minHeight: '200vh', // Ensure container is tall enough for sticky to work
-        overflow: 'visible', // Allow content to extend beyond bounds
+        minHeight: isMobile ? 'auto' : '200vh',
+        overflow: 'visible',
         position: 'relative'
       }}
     >
-      {/* Swap Button at the top left */}
-      <div style={{
-        position: 'fixed',
-        top: '20px',
-        left: '20px',
-        zIndex: 1000
-      }}>
+      {/* Swap Button - hidden when screen < 800px */}
+      {!hideButtons && (
+        <div style={{
+          position: 'fixed',
+          top: '20px',
+          left: '20px',
+          zIndex: 1000
+        }}>
         <button
           onClick={toggleLanyard}
           style={{
@@ -46,8 +47,8 @@ const ProfileSection = () => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            width: '56px',
-            height: '56px',
+            width: isTablet ? '48px' : '56px',
+            height: isTablet ? '48px' : '56px',
             boxShadow: '0 8px 25px rgba(147, 51, 234, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
           }}
           onMouseEnter={(e) => {
@@ -65,8 +66,8 @@ const ProfileSection = () => {
         >
           {/* Modern Swap Icon */}
           <svg 
-            width="28" 
-            height="28" 
+            width={isTablet ? "24" : "28"} 
+            height={isTablet ? "24" : "28"} 
             viewBox="0 0 24 24" 
             fill="none" 
             style={{
@@ -90,21 +91,23 @@ const ProfileSection = () => {
           </svg>
         </button>
       </div>
+      )}
 
-      {/* Spacer to push profile down initially - profile starts lower */}
-      {isSimpleLanyard && <div style={{ height: '45vh' }}></div>}
+      {/* Spacer to push profile down initially - only on desktop for simple lanyard */}
+      {isSimpleLanyard && !isMobile && <div style={{ height: '45vh' }}></div>}
       
-      {/* Sticky container that sticks at center when scrolling */}
+      {/* Profile container - static on mobile for proper flow */}
       <div style={{
-        position: 'sticky',
-        top: isSimpleLanyard ? '50%' : '0', // Stick at top for 3D lanyard, center for simple
-        transform: isSimpleLanyard ? 'translateY(-50%)' : 'translateY(0)', // Center the simple card only
+        position: isMobile ? 'static' : 'sticky',
+        top: isMobile ? 'auto' : (isSimpleLanyard ? '50%' : '0'),
+        transform: isMobile ? 'none' : (isSimpleLanyard ? 'translateY(-50%)' : 'translateY(0)'),
         width: '100%',
-        maxWidth: '340px',
+        maxWidth: isMobile ? '100%' : '340px',
         zIndex: 100,
-        height: isSimpleLanyard ? 'auto' : '100vh', // Full height for 3D lanyard
-        overflow: 'visible', // Allow lanyard to extend beyond container
-        pointerEvents: 'none' // Allow interactions to pass through container
+        height: 'auto',
+        overflow: 'visible',
+        pointerEvents: 'none',
+        marginBottom: isMobile ? '30px' : '0'
       }}>
         <div style={{ 
           pointerEvents: 'auto', // Re-enable pointer events for the actual component

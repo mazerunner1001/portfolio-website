@@ -10,14 +10,31 @@ import ContactSection from '../sections/ContactSection';
 
 const MainLayout = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const [hideButtons, setHideButtons] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setShowBackToTop(window.pageYOffset > 300);
     };
 
+    const handleResize = () => {
+      const width = window.innerWidth;
+      setIsMobile(width < 1200);
+      setIsTablet(width < 1000);
+      setHideButtons(width < 800);
+    };
+
+    // Initial check
+    handleResize();
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   const scrollToTop = () => {
@@ -28,56 +45,64 @@ const MainLayout = () => {
   };
   return (
     <div style={{ position: 'relative', zIndex: 10 }}>
-      <Navigation />
+      <Navigation isMobile={hideButtons} />
       
-      {/* Main Container with Profile on Left and All Content on Right */}
+      {/* Main Container - Responsive Layout */}
       <div style={{
         position: 'relative',
         zIndex: 10,
-        width: '85%',
+        width: isMobile ? '100%' : '85%',
         minHeight: '100vh',
         display: 'flex',
-        margin: '0 auto', // Center the entire content
-        gap: '2rem', // Reduced gap between sections
-        overflow: 'visible' // Allow content to extend beyond bounds
+        flexDirection: isMobile ? 'column' : 'row',
+        margin: '0 auto',
+        gap: isMobile ? '0' : '2rem',
+        overflow: 'visible',
+        padding: isMobile ? '0' : '0'
       }}>
-        {/* Profile Section - Left Side (fixed width container) */}
-        <ProfileSection />
+        {/* Profile Section - Top on mobile, Left on desktop */}
+                {/* Profile Section - Top on mobile, Left on desktop */}
+        <ProfileSection isMobile={isMobile} isTablet={isTablet} hideButtons={hideButtons} />
         
-        {/* All Content - Right Side */}
+        {/* All Content - Below profile on mobile, Right side on desktop */}
         <div className="content-main" style={{
-          width: '68%',
+          width: isMobile ? '100%' : '68%',
           flexGrow: 1,
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
-          padding: '80px 0 0 0',
-          boxSizing: 'border-box'
+          padding: isMobile ? '20px' : '80px 0 0 0',
+          boxSizing: 'border-box',
+          alignItems: isTablet ? 'center' : 'stretch',
+          textAlign: isTablet ? 'center' : 'left',
+          maxWidth: isTablet ? '100vw' : 'none'
         }}>
           {/* Hero Content */}
           <div id="home" style={{
-            height: '80vh',
+            height: isMobile ? 'auto' : '80vh',
+            minHeight: isMobile ? '60vh' : 'auto',
             display: 'flex',
             flexDirection: 'column',
-            justifyContent: 'center'
+            justifyContent: isMobile ? 'flex-start' : 'center',
+            padding: isMobile ? '20px 0' : '0'
           }}>
             <ContentSection />
           </div>
 
           {/* Additional Sections */}
-          <div id="about">
+          <div id="about" style={{ width: '100%' }}>
             <AboutSection />
           </div>
-          <div id="projects">
+          <div id="projects" style={{ width: '100%' }}>
             <ProjectsSection />
           </div>
-          <div id="experience">
+          <div id="experience" style={{ width: '100%' }}>
             <ExperienceSection />
           </div>
-          <div id="faq">
+          <div id="faq" style={{ width: '100%' }}>
             <FAQSection />
           </div>
-          <div id="contact">
+          <div id="contact" style={{ width: '100%' }}>
             <ContactSection />
           </div>
         </div>
