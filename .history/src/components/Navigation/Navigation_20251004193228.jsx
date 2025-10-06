@@ -1,0 +1,130 @@
+import React, { useState, useEffect, useRef } from 'react';
+import './Navigation.css';
+import { FaHome, FaFolder, FaTools, FaBriefcase, FaEnvelope } from 'react-icons/fa';
+
+const Navigation = () => {
+  const [activeSection, setActiveSection] = useState('home');
+  const [isUserScrolling, setIsUserScrolling] = useState(false);
+  const scrollTimeoutRef = useRef(null);
+
+  const navItems = [
+    { id: 'home', icon: FaHome, href: '#home' },
+    { id: 'about', icon: FaFolder, href: '#about' },
+    { id: 'projects', icon: FaTools, href: '#projects' },
+    { id: 'experience', icon: FaBriefcase, href: '#experience' },
+    { id: 'contact', icon: FaEnvelope, href: '#contact' }
+  ];
+
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      // Only update active section if user is not manually navigating
+      if (isUserScrolling || ticking) return;
+      
+      ticking = true;
+      requestAnimationFrame(() => {
+        const sections = navItems.map(item => document.getElementById(item.id)).filter(Boolean);
+        const scrollPosition = window.scrollY + window.innerHeight / 2;
+        
+        let activeSection = 'home'; // default
+        
+        for (let i = sections.length - 1; i >= 0; i--) {
+          const section = sections[i];
+          if (section.offsetTop <= scrollPosition) {
+            activeSection = section.id;
+            break;
+          }
+        }
+        
+        setActiveSection(activeSection);
+        ticking = false;
+      });
+    };
+
+    // Initial check
+    handleScroll();
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const handleNavClick = (id) => {
+    // Immediately set the active section
+    setActiveSection(id);
+    
+    // Disable scroll detection temporarily
+    setIsUserScrolling(true);
+    
+    // Clear any existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current);
+    }
+    
+    // Smooth scroll to section
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Re-enable scroll detection after a shorter duration
+    scrollTimeoutRef.current = setTimeout(() => {
+      setIsUserScrolling(false);
+    }, 800); // Reduced from 1000ms to 800ms
+  };
+
+  // Also handle manual scrolling (not clicking nav buttons)
+  useEffect(() => {
+    let scrollTimeout;
+    
+    const handleScroll = () => {
+      // If user is manually scrolling (not from nav click), reset the flag faster
+      if (!isUserScrolling) return;
+      
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        setIsUserScrolling(false);
+      }, 100); // Reduced from 150ms for faster response
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(scrollTimeout);
+    };
+  }, [isUserScrolling]);
+
+  return (
+    <nav className="navigation">
+      <div className="nav-container">
+        <div className="nav-pills">
+          {navItems.map((item) => {
+            const IconComponent = item.icon;
+            return (
+              <button
+                key={item.id}
+                className={`nav-pill ${activeSection === item.id ? 'active' : ''}`}
+                onClick={() => handleNavClick(item.id)}
+                title={item.id.charAt(0).toUpperCase() + item.id.slice(1)}
+              >
+                <IconComponent className="nav-icon" />
+              </button>
+            );
+          })}
+          <div 
+            className="nav-indicator" 
+            style={{
+              transform: `translateX(${navItems.findIndex(item => item.id === activeSection) * (58)}px)`
+            }}
+          />
+        </div>
+      </div>
+    </nav>
+  );
+};
+
+export default Navigation;

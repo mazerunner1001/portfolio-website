@@ -1,0 +1,28 @@
+.text-type {
+  display: inline-block;
+  white-space: pre-wrap;
+  /* Remove any default font sizing to inherit from parent */
+}
+
+.text-type__content {
+  /* Inherit all styling from parent */
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  margin: inherit;
+  padding: inherit;
+}
+
+.text-type__cursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+  /* Inherit font styling for consistent cursor appearance */
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.text-type__cursor--hidden {
+  display: none;
+}

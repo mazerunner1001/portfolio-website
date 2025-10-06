@@ -1,0 +1,193 @@
+.gallery-page {
+  min-height: 100vh;
+  background: transparent;
+  color: white;
+  font-family: 'SF Mono', 'Menlo', 'Monaco', 'Cascadia Code', 'Roboto Mono', 'Consolas', 'Courier New', monospace;
+  position: relative;
+  overflow-x: hidden;
+  overflow-y: visible;
+  padding-bottom: 2rem;
+}
+
+.gallery-header {
+  padding: 2rem;
+  position: relative;
+  z-index: 100;
+  background: transparent;
+}
+
+.back-btn {
+  background: rgba(168, 85, 247, 0.1);
+  border: 2px solid rgba(168, 85, 247, 0.3);
+  color: #a855f7;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+}
+
+.back-btn:hover {
+  background: rgba(168, 85, 247, 0.2);
+  border-color: rgba(168, 85, 247, 0.5);
+  transform: translateX(-5px);
+  box-shadow: 0 4px 15px rgba(168, 85, 247, 0.2);
+}
+
+.gallery-title-section {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  background: transparent;
+  margin-bottom: 3rem;
+}
+
+.gallery-title {
+  font-size: 3.5rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #a855f7, #ec4899, #06b6d4);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  text-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+}
+
+.gallery-subtitle {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+  margin-bottom: 3rem;
+}
+
+/* DomeGallery positioned freely below the header */
+.gallery-page > .sphere-root {
+  width: 100%;
+  height: 90vh;
+  min-height: 700px;
+  max-height: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 50;
+  overflow: visible !important;
+}
+
+/* Ensure the main sphere container doesn't clip content */
+.gallery-page .sphere-main {
+  overflow: visible !important;
+  height: 100% !important;
+}
+
+/* Make sure the stage allows overflow */
+.gallery-page .stage {
+  overflow: visible !important;
+  height: 100% !important;
+}
+
+/* Ensure sphere container shows all content */
+.gallery-page .sphere {
+  overflow: visible !important;
+}
+
+/* Remove black gradients from DomeGallery */
+.gallery-page .overlay {
+  background-image: none !important;
+  background: transparent !important;
+}
+
+.gallery-page .overlay--blur {
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  backdrop-filter: none !important;
+}
+
+.gallery-page .edge-fade {
+  background: transparent !important;
+  display: none !important;
+}
+
+/* Video styling in dome gallery */
+.gallery-page .item__image video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  border-radius: inherit !important;
+}
+
+/* Add a play button overlay for videos */
+.gallery-page .item[data-type="video"] .item__image::after {
+  content: "▶";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 20px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0.8;
+}
+
+/* Enlarged video styling */
+.gallery-page .enlarge video {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain !important;
+  border-radius: inherit !important;
+}
+
+.gallery-footer {
+  padding: 2rem;
+  text-align: center;
+  background: transparent;
+  backdrop-filter: none;
+  position: relative;
+  z-index: 100;
+}
+
+.gallery-description {
+  max-width: 600px;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .gallery-header {
+    padding: 1rem;
+  }
+
+  .gallery-title {
+    font-size: 2.5rem;
+  }
+
+  .gallery-subtitle {
+    font-size: 1rem;
+  }
+
+  .gallery-content {
+    padding: 1rem;
+    min-height: 60vh;
+  }
+
+  .back-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-title {
+    font-size: 2rem;
+  }
+
+  .gallery-subtitle {
+    font-size: 0.9rem;
+  }
+}
