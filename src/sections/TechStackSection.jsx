@@ -29,7 +29,8 @@ const TechStackSection = () => {
       overflow: 'hidden',
       width: '100%',
       maxWidth: '100vw',
-      padding: isMobile ? '0' : '0'
+      padding: isMobile ? '0 1rem' : '0',
+      boxSizing: 'border-box'
     }}>
       {/* LogoLoop Section */}
       <div style={{ 
@@ -71,8 +72,10 @@ const TechStackSection = () => {
         width: '100%',
         display: 'flex',
         gap: '1rem',
-        justifyContent: 'flex-start',
-        flexWrap: 'wrap'
+        justifyContent: isMobile ? 'center' : 'flex-start',
+        flexWrap: 'wrap',
+        padding: isMobile ? '0 1rem' : '0',
+        boxSizing: 'border-box'
       }}>
         <button 
           onClick={handleLetsTalk}
@@ -81,13 +84,15 @@ const TechStackSection = () => {
             color: 'white',
             border: 'none',
             borderRadius: '12px',
-            padding: '1rem 2rem',
-            fontSize: '1.1rem',
+            padding: isMobile ? '0.8rem 1.5rem' : '1rem 2rem',
+            fontSize: isMobile ? '1rem' : '1.1rem',
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
             boxShadow: '0 4px 15px rgba(139, 92, 246, 0.3)',
             transform: 'translateY(0)',
+            minWidth: 'fit-content',
+            whiteSpace: 'nowrap'
           }}
           onMouseEnter={(e) => {
             e.target.style.transform = 'translateY(-2px)';
@@ -108,12 +113,14 @@ const TechStackSection = () => {
             color: '#A855F7',
             border: '2px solid #A855F7',
             borderRadius: '12px',
-            padding: '1rem 2rem',
-            fontSize: '1.1rem',
+            padding: isMobile ? '0.8rem 1.5rem' : '1rem 2rem',
+            fontSize: isMobile ? '1rem' : '1.1rem',
             fontWeight: '600',
             cursor: 'pointer',
             transition: 'all 0.3s ease',
             transform: 'translateY(0)',
+            minWidth: 'fit-content',
+            whiteSpace: 'nowrap'
           }}
           onMouseEnter={(e) => {
             e.target.style.background = '#A855F7';

@@ -57,7 +57,6 @@ const MainLayout = () => {
         flexDirection: isMobile ? 'column' : 'row',
         margin: '0 auto',
         gap: isMobile ? '0' : '2rem',
-        overflow: 'visible',
         padding: isMobile ? '0' : '0'
       }}>
         {/* Profile Section - Top on mobile, Left on desktop */}
@@ -114,15 +113,15 @@ const MainLayout = () => {
           onClick={scrollToTop}
           style={{
             position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            width: '50px',
-            height: '50px',
+            bottom: isMobile ? '15px' : '20px',
+            right: isMobile ? '15px' : '20px',
+            width: isMobile ? '45px' : '50px',
+            height: isMobile ? '45px' : '50px',
             borderRadius: '50%',
             backgroundColor: 'rgba(168, 85, 247, 0.9)',
             border: 'none',
             color: 'white',
-            fontSize: '20px',
+            fontSize: isMobile ? '18px' : '20px',
             cursor: 'pointer',
             zIndex: 1000,
             transition: 'all 0.3s ease',
@@ -132,6 +131,8 @@ const MainLayout = () => {
             fontFamily: 'SF Mono, Menlo, Monaco, "Cascadia Code", "Roboto Mono", Consolas, "Courier New", monospace',
             backdropFilter: 'blur(10px)',
             boxShadow: '0 4px 15px rgba(168, 85, 247, 0.3)',
+            maxWidth: 'calc(100vw - 30px)',
+            maxHeight: 'calc(100vh - 30px)'
           }}
           onMouseEnter={(e) => {
             e.target.style.backgroundColor = 'rgba(168, 85, 247, 1)';

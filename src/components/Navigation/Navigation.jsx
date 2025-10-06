@@ -18,6 +18,28 @@ const Navigation = ({ isMobile = false }) => {
   });
   const scrollTimeoutRef = useRef(null);
 
+  // Calculate responsive spacing for navigation indicator
+  const getIndicatorSpacing = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 480) {
+      return 50; // 44px width + 6px gap (gap remains same)
+    } else if (screenWidth <= 768) {
+      return 54; // 48px width + 6px gap  
+    } else {
+      return 58; // 52px width + 6px gap
+    }
+  };
+
+  // Calculate responsive spacing for mode indicator
+  const getModeIndicatorSpacing = () => {
+    const screenWidth = window.innerWidth;
+    if (screenWidth <= 480) {
+      return 46; // 42px width + 4px gap
+    } else {
+      return 60; // default spacing
+    }
+  };
+
   const navItems = [
     { id: 'home', icon: FaHome, href: '#home' },
     { id: 'about', icon: FaFolder, href: '#about' },
@@ -162,7 +184,7 @@ const Navigation = ({ isMobile = false }) => {
             <div 
               className="nav-indicator" 
               style={{
-                transform: `translateX(${navItems.findIndex(item => item.id === activeSection) * (58)}px)`
+                transform: `translateX(${navItems.findIndex(item => item.id === activeSection) * getIndicatorSpacing()}px)`
               }}
             />
           </div>
@@ -190,7 +212,7 @@ const Navigation = ({ isMobile = false }) => {
             <div 
               className="mode-indicator" 
               style={{
-                transform: `translateX(${isCLIMode ? '60px' : '0px'})`
+                transform: `translateX(${isCLIMode ? getModeIndicatorSpacing() + 'px' : '0px'})`
               }}
             />
           </div>

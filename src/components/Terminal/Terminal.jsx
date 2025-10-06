@@ -344,7 +344,7 @@ const Terminal = ({ isOpen, onClose, onMinimize, onMaximize, isMaximized, isMini
 
   // Command descriptions for help system
   const commandDescriptions = {
-    'abhinav': 'Display information about Abhinav (alias for about)',
+    'praneeth': 'Display information about Praneeth (alias for about)',
     'about': 'Display detailed information about Praneeth',
     'age': 'Show current age',
     'antonym': 'Find antonyms for a given word',
@@ -502,7 +502,7 @@ const Terminal = ({ isOpen, onClose, onMinimize, onMaximize, isMaximized, isMini
       return ['Wake up, Neo... 🔴💊', 'The Matrix has you...', 'Follow the white rabbit 🐰'];
     },
     // Additional commands from the image
-    'abhinav': () => commands.about(), // Alias for about
+    'praneeth': () => commands.about(), // Alias for about
     'age': () => ['Current age: 21 years old (Born in 2003)'],
     'antonym': (word) => word ? [`Antonym lookup for "${word}": Feature coming soon!`] : ['Usage: antonym <word>'],
     'ascii': () => [...nameAscii.map(line => ({ type: 'ascii', content: line }))],

@@ -18,7 +18,7 @@ const ProjectsSection = () => {
       description: "Developed an modular NLP pipeline for Sanskrit to address the absence of standard computational tools for the language. Designed hybrid models (BiLSTM, CNN, transformers, BERT) achieving 92.2% F1 in morphological parsing, outperforming prior benchmarks.",
       image: ShlokaImage,
       tags: ["Python", "BiLSTM", "CNN", "BERT", "Transformers", "NLP"],
-      githubUrl: "#",
+      githubUrl: "",
       liveUrl: "#",
       featured: true
     },
@@ -28,7 +28,7 @@ const ProjectsSection = () => {
       description: "Developed a Python-based routing algorithm for vehicle-to-vehicle communication in IoV. Optimized routing decisions using Q-Learning to ensure low-latency, safe trajectory prediction, reducing packet loss and routing failures while improving link reliability.",
       image: QlvpImage,
       tags: ["Python", "Q-Learning", "IoT", "Routing Algorithms"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/mazerunner1001/A-Q-Learning-based-Routing-Algorithm-for-IoV",
       liveUrl: "#",
       featured: true
     },
@@ -38,7 +38,7 @@ const ProjectsSection = () => {
       description: "Developed a relational DBMS (MySQL) with normalized relational database schema. Implemented a Spring Boot Maven backend with JPA for efficient role-based access. Built with React + Tailwind frontend for seamless user interaction.",
       image: DbmsImage,
       tags: ["Spring Boot", "React", "MySQL", "JPA", "Tailwind"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/mazerunner1001/DBMS-Project",
       liveUrl: "#",
       featured: true
     },
@@ -48,7 +48,7 @@ const ProjectsSection = () => {
       description: "Built an extensive IMDB-style Movie Information app using MERN stack. Features: Personalized Feed, Posts, Comments, Profile Customization, Pagination, JWT Authentication using WebSockets.",
       image: NovaImage,
       tags: ["MongoDB", "Express", "React", "Node.js", "JWT", "WebSockets"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/mazerunner1001/Nova",
       liveUrl: "#",
       featured: false
     },
@@ -58,7 +58,7 @@ const ProjectsSection = () => {
       description: "Applied MLE and Bayesian learning frameworks with Bayesian estimation algorithm for efficient RIS-assisted sensor localization. Demonstrated practical use for low-cost, energy-efficient IoT positioning via stochastic sub-beam UEs scheduling.",
       image: RisImage,
       tags: ["Python", "MLE", "Bayesian Learning", "IoT"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/mazerunner1001/Single-Antenna-Sensor-Localization-with-RIS",
       liveUrl: "#",
       featured: false
     },
@@ -68,7 +68,7 @@ const ProjectsSection = () => {
       description: "Built a Python-based Debate App using Django to facilitate open discussions on social issues. Features: Dynamic search, Realtime Updates, Authentication, Conversation Navigation, profile customization, CRUD functionality.",
       image: null, // No image provided for this project
       tags: ["Python", "Django", "PostgreSQL", "WebSockets"],
-      githubUrl: "#",
+      githubUrl: "https://github.com/mazerunner1001/TheDiscourse",
       liveUrl: "#",
       featured: false
     }

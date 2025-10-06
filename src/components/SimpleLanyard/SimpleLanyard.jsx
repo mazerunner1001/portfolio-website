@@ -2,7 +2,7 @@ import React from 'react';
 import './SimpleLanyard.css';
 import profileImage from '../../assets/Profile.jpg';
 import profileBackground from '../../assets/ProfileBackground.png';
-import { FaDribbble, FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram, FaEnvelope } from 'react-icons/fa';
 
 const SimpleLanyard = () => {
   return (
@@ -27,18 +27,18 @@ const SimpleLanyard = () => {
         </div>
         
         <div className="social-icons">
-          <div className="social-icon">
-            <FaDribbble />
-          </div>
-          <div className="social-icon">
-            <FaTwitter />
-          </div>
-          <div className="social-icon">
+          <a href="https://github.com/mazerunner1001" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <FaGithub />
+          </a>
+          <a href="www.linkedin.com/in/praneeth-chandra-957240251" target="_blank" rel="noopener noreferrer" className="social-icon">
+            <FaLinkedin />
+          </a>
+          <a href="https://www.instagram.com/praneethchandra123" target="_blank" rel="noopener noreferrer" className="social-icon">
             <FaInstagram />
-          </div>
-          <div className="social-icon">
+          </a>
+          <a href="mailto:spraneethchandra123@gmail.com" className="social-icon">
             <FaEnvelope />
-          </div>
+          </a>
         </div>
       </div>
     </div>
