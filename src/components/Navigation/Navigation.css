@@ -283,3 +283,10 @@
     left: 2px;
   }
 }
+
+/* Hide only the mode toggle (CLI/GUI switches) below 1000px */
+@media (max-width: 999px) {
+  .mode-toggle {
+    display: none;
+  }
+}
